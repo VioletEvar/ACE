@@ -4,3 +4,6 @@
 [submodule "ace-hold/ori-hold"]
 	path = ace-hold/ori-hold
 	url = https://github.com/zc-alexfan/hold.git
+[submodule "ace-sam2/ori-sam2"]
+	path = ace-sam2/ori-sam2
+	url = https://github.com/facebookresearch/segment-anything-2.git
