@@ -94,7 +94,7 @@ def fit_single_hand(v3d_ra_list, seq_name, args, is_right):
 
     pbar = tqdm(enumerate(v3d_ra_list), total=len(v3d_ra_list))
     prev_out = None
-    prev_v3d_ra = None  # 保存前一帧的原始数据
+    prev_v3d_ra = None  # store v3d data from the previous frame
     out_list = []
     for iteration, v3d_ra in pbar:
         pbar.set_description(
@@ -103,7 +103,6 @@ def fit_single_hand(v3d_ra_list, seq_name, args, is_right):
         is_valid = np.isnan(v3d_ra).sum() == 0
         
         if not is_valid and prev_v3d_ra is not None:
-            print(f"Data invalid at frame {iteration}, using previous frame's original data")
             v3d_ra = prev_v3d_ra  # use data from previous frame
 
         if is_valid or prev_v3d_ra is not None:
