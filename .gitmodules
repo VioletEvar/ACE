@@ -1,3 +1,6 @@
 [submodule "ace-hamer/ori-hamer"]
 	path = ace-hamer/ori-hamer
 	url = https://github.com/geopavlakos/hamer.git
+[submodule "ace-hold/ori-hold"]
+	path = ace-hold/ori-hold
+	url = https://github.com/zc-alexfan/hold.git
