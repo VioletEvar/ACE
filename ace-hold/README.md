@@ -18,4 +18,7 @@ with our modified script:
 pyhold scripts/ace_register_mano.py --seq_name $seq_name --save_mesh --use_beta_loss
 ```
 
+## Other small changes
+* When preprocessing, you may run into an assertion error while running `validate_masks.py`, when this
+happens, you can check the script to see if the image type changed from jpg to png in line 14, for in older versions of the original code the image type is jpg.
 
