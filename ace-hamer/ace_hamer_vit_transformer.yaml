@@ -5,7 +5,6 @@ defaults:
 
 GENERAL:
   TOTAL_STEPS: 10_000_000
-  # TOTAL_STEPS: 1000
   LOG_STEPS: 1000
   VAL_STEPS: 1000
   CHECKPOINT_STEPS: 1000
@@ -34,10 +33,10 @@ MODEL:
     TYPE: transformer_decoder
     IN_CHANNELS: 2048
     TRANSFORMER_DECODER:
-      # depth: 6
-      # heads: 8
-      depth: 10
-      heads: 16
+      depth: 6
+      heads: 8
+      # depth: 10
+      # heads: 16
       mlp_dim: 1024
       dim_head: 64
       # dropout: 0.0
@@ -45,34 +44,33 @@ MODEL:
       emb_dropout: 0.0
       norm: layer
       # context_dim: 1280 # from vitpose-H
-      context_dim: 1600
-  # RAT:
-  #   INPUT_DIM: 5
-  #   HIDDEN_SIZE: 360
-  #   OUTPUT_DIM: 1280
-  #   TAU: 0.5
+      # equal to sir input dim
+      # context_dim: 1600
+      context_dim: 1440
+
   RAT:
     INPUT_DIM: 5
-    # HIDDEN_SIZE_1: 16
-    # HIDDEN_SIZE_2: 32
-    # HIDDEN_SIZE_3: 64
     HIDDEN_SIZE_1: 16
-    HIDDEN_SIZE_2: 64
-    HIDDEN_SIZE_3: 128
-    # 可调节
-    OUTPUT_DIM: 160
-    # 可调节
+    HIDDEN_SIZE_2: 32
+    HIDDEN_SIZE_3: 64
+    # HIDDEN_SIZE_1: 16
+    # HIDDEN_SIZE_2: 64
+    # HIDDEN_SIZE_3: 128
+    # adjustable
+    OUTPUT_DIM: 80
+    # OUTPUT_DIM: 160
     TAU: 0.1
 
   SIR:
-    # 可调节
-    INPUT_DIM: 1600
-    # INPUT_DIM: 1440
-    HIDDEN_SIZE: 1600
-    NUM_HEADS: 16
-    NUM_LAYERS: 10
-    # NUM_HEADS: 8
-    # NUM_LAYERS: 6
+    # adjustable; input dim = 1280 + 2 * output_dim_of_rat
+    # INPUT_DIM: 1600
+    INPUT_DIM: 1440
+    # adjustable; usually equal to input dim
+    HIDDEN_SIZE: 1440
+    # NUM_HEADS: 16
+    # NUM_LAYERS: 10
+    NUM_HEADS: 8
+    NUM_LAYERS: 6
     OUTPUT_DIM: 1280
 
 LOSS_WEIGHTS:
