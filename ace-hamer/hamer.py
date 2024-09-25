@@ -34,9 +34,9 @@ class HAMER(pl.LightningModule):
 
         self.cfg = cfg
 
-        # 在这里定义rat的参数设置
+        # init rat
         self.rat = rat(cfg)
-        # 初始化sir
+        # init sir
         #self.sir = sir(cfg)
         self.sir = SIR(
             input_dim=cfg.MODEL.SIR.INPUT_DIM,
@@ -134,19 +134,19 @@ class HAMER(pl.LightningModule):
 
         for i in range(batch_size):
 
-            # 获取第 i 个样本的 lh_bbox 和 rh_bbox
+            # get lh_bbox and rh_bbox
             lh_box_np = np.array([
-                lh_box[0][i].cpu().item(),  # 提取 x_min
-                lh_box[1][i].cpu().item(),  # 提取 y_min
-                lh_box[2][i].cpu().item(),  # 提取 x_max
-                lh_box[3][i].cpu().item()   # 提取 y_max
+                lh_box[0][i].cpu().item(),  # get x_min
+                lh_box[1][i].cpu().item(),  # get y_min
+                lh_box[2][i].cpu().item(),  # get x_max
+                lh_box[3][i].cpu().item()   # get y_max
             ])
             # print({f'bbox:{lh_box_np}'})
             rh_box_np = np.array([
-                rh_box[0][i].cpu().item(),  # 提取 x_min
-                rh_box[1][i].cpu().item(),  # 提取 y_min
-                rh_box[2][i].cpu().item(),  # 提取 x_max
-                rh_box[3][i].cpu().item()   # 提取 y_max
+                rh_box[0][i].cpu().item(),  # get x_min
+                rh_box[1][i].cpu().item(),  # get y_min
+                rh_box[2][i].cpu().item(),  # get x_max
+                rh_box[3][i].cpu().item()   # get y_max
             ])
             # print({f'other hand bbox:{rh_box_np}'})
             rh_rat_feats_tmp, lh_rat_feats_tmp = self.rat(lh_box_np,rh_box_np)
