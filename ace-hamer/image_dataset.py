@@ -211,7 +211,7 @@ class ImageDataset(Dataset):
             for item in source:
                 datas = item['data.pyd']
                 if len(datas) == 2:
-                    # 双手数据，分别处理左右手
+                    # process two hand data
                     if datas[0]['right'] < 0:
                         left_hand_data = datas[0]
                         right_hand_data = datas[1]
@@ -219,13 +219,13 @@ class ImageDataset(Dataset):
                         left_hand_data = datas[1]
                         right_hand_data = datas[0]
 
-                    # 为左手数据附加右手的 center 和 scale 信息
+                    # add right hand center and scale to left hand data
                     left_hand_data['other_hand_center'] = right_hand_data['center']
                     left_hand_data['other_hand_scale'] = right_hand_data['scale']
                     left_hand_data['other_hand_keypoints'] = right_hand_data['keypoints_3d']
                     left_hand_data['other_hand_data'] = right_hand_data
 
-                    # 为右手数据附加左手的 center 和 scale 信息
+                    # add left hand center and scale to right hand data
                     right_hand_data['other_hand_center'] = left_hand_data['center']
                     right_hand_data['other_hand_scale'] = left_hand_data['scale']
                     right_hand_data['other_hand_keypoints'] = left_hand_data['keypoints_3d']
