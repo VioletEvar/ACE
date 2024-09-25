@@ -21,4 +21,4 @@ pyhold scripts/ace_register_mano.py --seq_name $seq_name --save_mesh --use_beta_
 ## Other small changes
 * When preprocessing, you may run into an assertion error while running `validate_masks.py`, when this
 happens, you can check the script to see if the image type changed from jpg to png in line 14, for in older versions of the original code the image type is jpg.
-
+* If you want to use our modified hamer to preprocess, you can refer to the README.md file in ace-hamer folder, and adjust the hamer submodule in hold accordingly.
