@@ -243,7 +243,7 @@ class ImageDataset(Dataset):
                     else:
                         right_mask = np.ones_like(item['jpg'][:,:,0], dtype=bool)
                     
-                    # 返回双手数据
+                    # return two hand data
                     # yield {
                     #     '__key__': item['__key__'],
                     #     'jpg': item['jpg'],
@@ -254,7 +254,7 @@ class ImageDataset(Dataset):
 
                     #     # 'is_right_hand': False
                     # }
-                    # 处理左手数据
+                    # process left hand data
                     yield {
                         '__key__': item['__key__'],
                         'jpg': item['jpg'],
@@ -263,7 +263,7 @@ class ImageDataset(Dataset):
                         'is_right_hand': False
                     }
 
-                    # 处理右手数据
+                    # process right hand data
                     yield {
                         '__key__': item['__key__'],
                         'jpg': item['jpg'],
@@ -275,7 +275,7 @@ class ImageDataset(Dataset):
                 else:
                     # print(f'len datas:{len(datas)}')
                     # continue
-                    # 处理单手数据（没有另一只手的数据）
+                    # process one hand data
                     hand_data = datas[0]
                     if 'detection.npz' in hand_data:
                         det_idx = hand_data['extra_info']['detection_npz_idx']
@@ -529,9 +529,9 @@ class ImageDataset(Dataset):
             mask_patch = np.ones_like(mask_patch)
 
 
-        # 生成并存储单手数据的item
+        # generate item
         item = {}
-        # 判断是左手还是右手
+        # get hand type
         hand_type = 'right' if right > 0.5 else 'left'
 
         item['img'] = img_patch
